@@ -1,0 +1,33 @@
+﻿<div class="topMenu" id="topMenu" ng-if="topMenu.menuItem != 'hide'">
+    <div>
+        <div class="col-sm-12 menuTopPanel menuColumn">
+            <div class="col-sm-4 menuColumn">
+                <a href="#!searchspecies/0" class="no-decoration">
+                    <div id="menuSpecies" class="menuButton menuButton-species" ng-class="{'menuButton-selected': topMenu.menuItem == 'Species'}">
+                        <p class="menuButtonText" ng-if="topMenu.backButton == false || topMenu.menuItem != 'Species'">Species Search</p>
+                        <p class="menuButtonText" ng-if="topMenu.backButton == true && topMenu.menuItem == 'Species'">Species</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 menuColumn">
+                <a href="#!searchlocation" class="no-decoration">
+                    <div id="menuLocation" class="menuButton menuButton-location" ng-class="{'menuButton-selected': topMenu.menuItem == 'Location'}">
+                        <p class="menuButtonText" ng-if="topMenu.backButton == false || topMenu.menuItem != 'Location'">Location Search</p>
+                        <p class="menuButtonText" ng-if="topMenu.backButton == true && topMenu.menuItem == 'Location'">Location</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 menuColumn">
+                <a href="#!searchmap" class="no-decoration">
+                    <div id="menuMap" class="menuButton  menuButton-map" ng-class="{'menuButton-selected': topMenu.menuItem == 'Map'}">
+                        <p class="menuButtonText" ng-if="topMenu.backButton == false || topMenu.menuItem != 'Map'">Map Search</p>
+                        <p class="menuButtonText" ng-if="topMenu.backButton == true && topMenu.menuItem == 'Map'">Map</p>
+                    </div>
+                </a>
+            </div>
+            <div ng-if="topMenu.backButton">
+                <div class="backButton"><a href bjapp-back-button><span class="glyphicon glyphicon-menu-left menuBack"></span></a></div>
+            </div>
+        </div>
+    </div>
+</div>

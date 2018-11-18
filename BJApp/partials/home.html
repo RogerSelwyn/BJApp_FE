@@ -1,0 +1,32 @@
+﻿<div class="pageContent">
+    <div id="container" class="container pageContainer">
+        <div class="col-sm-12 mainPagePanel mainSlider noPadding" ng-if="speciesPhotos.length>0">
+            <div id="mainSliderWrapper" class="loading">
+                <flex-slider slider-id="mainSlider" flex-slide="speciesphoto in speciesPhotos track by $index" animation="fade" animation-loop="true" sync="#mainCarousel"
+                             slideshow="true" control-nav="false" init-delay="100" start="startSlides($slider)" before="changeHighlight($slider)">
+                    <li>
+                        <div class="mainSliderContent">
+                            <div class="mainSliderImage">
+                                <a href="#!species/{{speciesphoto.SpeciesId}}" class="no-decoration">
+                                    <img bj-src="{{baseURL}}{{speciesphoto.LargePhotoLocation}}" bjapp-imgcache ng-if="!HQPhotos">
+                                    <img bj-src="{{baseURL}}{{speciesphoto.OriginalLocation}}" bjapp-imgcache ng-if="HQPhotos">
+                                </a>
+                            </div>
+                            <div class="mainSliderDescription">
+                                <p class="mainSliderDescriptionContent">{{speciesphoto.Description}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </flex-slider>
+            </div>
+            <div id="mainCarouselWrapper" class="loading">
+                <flex-slider slider-id="mainCarousel" flex-slide="speciesphoto in speciesPhotos track by $index" animation="slide" animation-loop="true" item-width="64"
+                             as-nav-for="#mainSlider" slideshow="true" control-nav="false">
+                    <li>
+                        <img bj-src="{{baseURL}}{{speciesphoto.ThumbnailLocation}}" bjapp-imgcache>
+                    </li>
+                </flex-slider>
+            </div>
+        </div>
+    </div>
+</div>

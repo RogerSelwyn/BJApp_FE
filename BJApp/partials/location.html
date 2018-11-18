@@ -1,0 +1,62 @@
+﻿<div class="pageContent">
+    <div id="container" class="container">
+        <div id="pageContainer" class="row detailPage pageContainer touch-scroll" >
+            <div class="col-sm-12">
+                <h4><b>{{location.LocationName}}</b></h4>
+                <hr class="hrTitleDividerShallow" />
+            </div>
+            <div class="col-sm-12">
+                <a href ng-if="LocationPhotoLocation"><img class="pull-right img-thumbnail detailThumbPhoto" bj-src="{{baseURL}}{{LocationPhotoLocation}}" ng-click="openPhoto(location)" bjapp-imgcache></a>
+                <div>
+                    Address: {{location.Address}}, {{location.County}}, {{location.Postcode}}, {{location.Country}}
+                </div>
+                <div>
+                    Co-ordinates: {{location.Latitude}}, {{location.Longitude}}
+                </div>
+                <div>
+                    <p></p><b>General Information and History:</b><p></p><div ng-bind-html="location.Description"></div>
+                </div>
+            </div>
+            <div class="col-sm-12 selectionLocationSpecies topOfSection " ng-if="location.species.length>0">
+                <div id="selectionList" class="col-sm-4 selectionList selectionListLocationSpecies touch-scroll">
+                    <div class="oneSpeciesRecord" ng-repeat="species in location.species" ng-click="selectSpecies(species)" ng-class="{speciesSelectedRecord: species.id == selectedLocationSpecies}">
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="selectionItemThumb" bj-src="{{baseURL}}{{species.ThumbnailLocation}}" alt="{{species.LatinName}}" bjapp-imgcache>
+                            </div>
+                            <div class="media-body">
+                                <div class="media-heading selectionItemText" ng-if="species.CommonName!=species.LatinName">{{species.CommonName}}</div>
+                                <div class="media-heading selectionItemText" ng-if="species.CommonName==species.LatinName"><i>{{species.CommonName}}</i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8 selectionLocationDetail touch-scroll">
+                    <a href="#!species/{{species.id}}" class="no-decoration">
+                        <div ng-if="species.CommonName">
+                            <h4>
+                                <b>
+                                    <span ng-if="species.CommonName!=species.LatinName">{{species.CommonName}} (<i>{{species.LatinName}}</i>)</span>
+                                    <span ng-if="species.CommonName==species.LatinName"><i>{{species.CommonName}}</i></span>
+                                </b>
+                            </h4>
+                            <hr class="hrTitleDivider" />
+                            <div>
+                                <div>
+                                    <b>Description:</b><div ng-bind-html="species.Description"></div>
+                                </div>
+                                <div ng-if="species.LocationDescription">
+                                    <b>Location:</b><div ng-bind-html="species.LocationDescription"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="species.MediumPhotoLocation" class="selectionDetailPhoto">
+                            <img class="img-thumbnail" bj-src="{{baseURL}}{{species.MediumPhotoLocation}}" bjapp-imgcache ng-if="!HQPhotos">
+                            <img class="img-thumbnail" bj-src="{{baseURL}}{{species.LargePhotoLocation}}" bjapp-imgcache ng-if="HQPhotos">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

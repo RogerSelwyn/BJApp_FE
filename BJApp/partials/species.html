@@ -1,0 +1,74 @@
+﻿<div class="pageContent">
+    <div id="container" class="container">
+        <div class="row detailPage pageContainer touch-scroll ">
+            <div class="col-sm-12">
+                <h4>
+                    <b>
+                        <span ng-if="species.CommonName!=species.LatinName">{{species.CommonName}} (<i>{{species.LatinName}}</i>)</span>
+                        <span ng-if="species.CommonName==species.LatinName"><i>{{species.CommonName}}</i></span>
+                    </b>
+                    <span ng-if="species.AliasName"> - {{species.AliasName}}</span>
+                </h4>
+                <hr class="hrTitleDividerShallow" />
+            </div>
+            <div class="col-sm-12">
+                <img class="pull-right img-thumbnail detailThumbPhoto" bj-src="{{baseURL}}{{species.MediumPhotoLocation}}" bjapp-imgcache ng-if="species.MediumPhotoLocation">
+                <div>
+                    <b>Description:</b><div ng-bind-html="species.Description"></div>
+                </div>
+                <div ng-if="species.LocationDescription">
+                    <b>Location:</b><div ng-bind-html="species.LocationDescription"></div>
+                </div>
+                <div ng-if="species.MigratoryPattern">
+                    <b>Migration:</b><div ng-bind-html="species.MigratoryPattern"></div>
+                </div>
+                <div ng-if="species.SpecialistInformation">
+                    <b>Specialist Information:</b><div ng-bind-html="species.SpecialistInformation"></div>
+                </div>
+                <div ng-if="species.regions.length>0">
+                    <b>Locations Found:</b>
+                </div>
+                <div class="btn-group" ng-if="species.regions.length>0">
+                    <div ng-repeat="region in species.regions" class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{region.RegionName}} <span class="caret"></span></button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu{{region.id}}">
+                            <li ng-repeat="location in region.locations"><a href="#!location/{{location.id}}">{{location.LocationName}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 topOfSection speciesSlider noPadding" ng-if="species.speciesphotos.length>0">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10 noPadding">
+                    <div id="speciesSliderWrapper" class="loading">
+                        <flex-slider slider-id="speciesSlider" flex-slide="speciesphoto in species.speciesphotos track by $index" animation="fade" animation-loop="true" sync="#speciesCarousel"
+                                     slideshow="true" control-nav="false" init-delay="100" start="startpreloadPhoto($slider)" before="preloadPhoto($slider)">
+                            <li>
+                                <div class="speciesSliderContent">
+                                    <div class="speciesSliderImage">
+                                        <a href>
+                                            <img bj-src="{{baseURL}}{{speciesphoto.MediumPhotoLocation}}" ng-click="openPhoto(speciesphoto)" bjapp-imgcache ng-if="!HQPhotos">
+                                            <img bj-src="{{baseURL}}{{speciesphoto.LargePhotoLocation}}" ng-click="openPhoto(speciesphoto)" bjapp-imgcache ng-if="HQPhotos">
+                                        </a>
+                                    </div>
+                                    <div class="speciesSliderDescription">
+                                        <p class="speciesSliderDescriptionContent">{{speciesphoto.Description}}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </flex-slider>
+                    </div>
+                    <div id="speciesCarouselWrapper" class="loading" ng-if="species.speciesphotos.length>1">
+                        <flex-slider slider-id="speciesCarousel" flex-slide="speciesphoto in species.speciesphotos track by $index" animation="slide" animation-loop="true" item-width="64" as-nav-for="#speciesSlider" slideshow="true" control-nav="false">
+                            <li>
+                                <img bj-src="{{baseURL}}{{speciesphoto.ThumbnailLocation}}" bjapp-imgcache>
+                            </li>
+                        </flex-slider>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

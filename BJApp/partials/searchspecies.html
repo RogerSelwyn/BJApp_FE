@@ -1,0 +1,55 @@
+﻿<div class="pageContent">
+    <div id="container" class="container pageContainer">
+        <div class="row">
+            <div class="col-sm-12 searchBar">
+                <div class="pull-left searchBarSearch">
+                    <input ng-model="speciesSearch" placeholder="Enter search" class="searchSpeciesInput" />
+                </div>
+                <div class="btn-group pull-right speciesTypeGroup" role="group">
+                    <button ng-repeat="speciesType in speciesTypeList" type="button" class="btn btn-default" id="stid{{speciesType.id}}" ng-click="speciesTypeButton(speciesType);">{{speciesType.SpeciesTypeName}}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="selectionList" class="col-sm-4 selectionList selectionListSpecies touch-scroll topOfSection">
+                <div class="oneSpeciesRecord" ng-repeat="species in selectedSpeciesType.species | filter:CustomSearchSpecies" ng-click="selectSpecies(species)" ng-class="{speciesSelectedRecord: species.id == selectedSpecies}">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="selectionItemThumb" bj-src="{{baseURL}}{{species.ThumbnailLocation}}" alt="{{species.LatinName}}" bjapp-imgcache>
+                        </div>
+                        <div class="media-body">
+                            <div class="media-heading selectionItemText" ng-if="species.CommonName!=species.LatinName">{{species.CommonName}}</div>
+                            <div class="media-heading selectionItemText" ng-if="species.CommonName==species.LatinName"><i>{{species.CommonName}}</i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 selectionSpeciesDetail touch-scroll topOfSection">
+                <a href="#!species/{{species.id}}" class="no-decoration">
+                    <div ng-if="species.CommonName">
+                        <h4>
+                            <b>
+                                <span ng-if="species.CommonName!=species.LatinName">{{species.CommonName}} (<i>{{species.LatinName}}</i>)</span>
+                                <span ng-if="species.CommonName==species.LatinName"><i>{{species.CommonName}}</i></span>
+                            </b>
+                        </h4>
+                        <hr class="hrTitleDivider" />
+                        <div>
+                            <div>
+                                <b>Description:</b><div ng-bind-html="species.Description"></div>
+                            </div>
+                            <div ng-if="species.LocationDescription">
+                                <b>Location:</b><div ng-bind-html="species.LocationDescription"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="species.MediumPhotoLocation" class="selectionDetailPhoto">
+                        <img class="img-thumbnail" bj-src="{{baseURL}}{{species.MediumPhotoLocation}}" bjapp-imgcache ng-if="!HQPhotos">
+                        <img class="img-thumbnail" bj-src="{{baseURL}}{{species.LargePhotoLocation}}" bjapp-imgcache ng-if="HQPhotos">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+﻿<div class="pageContent">
+    <div id="container" class="container pageContainer noMenu">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="pageHeader">Settings</div>
+            </div>
+        </div>
+        <div class="row settingsRow">
+            <div class="col-sm-4 settingsLeft">
+                <div class="btn-group" role="group">
+                    <button id="f0" class="btn btn-default" type="submit" ng-click="submitClearCache()">Clear cache</button>
+                    <button id="f3" class="btn btn-default" type="submit" ng-click="submitRefresh()">Refresh</button>
+                </div>
+            </div>
+            <div class="col-sm-8 settingsText"><b>Current photo cache size: </b>{{photoCacheSize}} MB</div>
+        </div>
+        <div class="row settingsRow">
+            <div class="col-sm-4 settingsLeft">
+                <div class="btn-group" role="group">
+                    <button id="f1" class="btn btn-default" type="submit" ng-click="submitRenewPhotoCache()" style="visibility:hidden">Photo cache</button>
+                    <button id="f2" class="btn btn-default" type="submit" ng-click="submitUpdatePhotoCache()">Update Photo Cache</button>
+                </div>
+            </div>
+            <div class="col-sm-8 settingsText"></div>
+        </div>
+        <div class="row settingsRow">
+            <div class="col-sm-4 settingsLeft">
+                <div class="btn-group" role="group">
+                    <button id="f5" class="btn btn-default" type="submit" ng-click="submitRenewRawPhotoCache()" style="visibility:hidden">Raw Photo cache</button>
+                    <button id="f6" class="btn btn-default" type="submit" ng-click="submitUpdateRawPhotoCache()">Update Raw Photo Cache</button>
+                </div>
+            </div>
+            <div class="col-sm-8 settingsText"></div>
+        </div>
+        <div class="row settingsRow">
+            <div class="col-sm-4 settingsLeft">
+                <button type="button" class="btn btn-default" id="btnDataCache" ng-click="submitDataCache();">Data cache</button>
+            </div>
+            <div class="col-sm-8 settingsText"></div>
+        </div>
+        <div class="row settingsRow">
+            <div class="col-sm-4 settingsLeft">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" id="btnOnline" ng-click="submitOnline(false);">Online</button>
+                    <button type="button" class="btn btn-default" id="btnOffline" ng-click="submitOnline(true);">Offline</button>
+                </div>
+            </div>
+            <div class="col-sm-8 settingsText"><b>Network is: </b>{{IsOnline.Desc}}</div>
+        </div>
+        <div class="row settingsRow">
+            <div class="col-sm-4 settingsLeft">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" id="btnSecure" ng-click="submitSecure(true);">Secured</button>
+                    <button type="button" class="btn btn-default" id="btnInsecure" ng-click="submitSecure(false);">Unsecure</button>
+                </div>
+            </div>
+            <div class="col-sm-8 settingsText"></div>
+        </div>
+        <div class="row settingsRow">
+            <div class="col-sm-4 settingsLeft">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" id="btnHQPhotos" ng-click="submitHQPhotos(true);">HQ Photos</button>
+                    <button type="button" class="btn btn-default" id="btnLQPhotos" ng-click="submitHQPhotos(false);">LQ Photos</button>
+                </div>
+            </div>
+            <div class="col-sm-8 settingsText"></div>
+        </div>
+        <div class="row settingsRow">
+            <div class="col-sm-4 settingsLeft">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" id="btnEnableBarcode" ng-click="submitBarcode(true);">Enable Barcode</button>
+                    <button type="button" class="btn btn-default" id="btnDisableBarcode" ng-click="submitBarcode(false);">Disable Barcode</button>
+                </div>
+            </div>
+            <div class="col-sm-8 settingsText"></div>
+        </div>
+        <div class="row settingsRow">
+            <div class="col-sm-4 settingsLeft">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" id="btnTimeoutHome" ng-click="submitTimeoutPage('home');">Timeout Home</button>
+                    <button type="button" class="btn btn-default" id="btnTimeoutSplash" ng-click="submitTimeoutPage('splash');">Timeout Splash</button>
+                </div>
+            </div>
+            <div class="col-sm-8 settingsText"></div>
+        </div>
+        <div class="row settingsRow">
+            <form ng-submit="submitTimeoutTime()">
+                <div class="col-sm-4 settingsLeft">
+                    <button id="f4" class="btn btn-default" type="submit">Set Inactivity Timeout</button>
+                </div>
+                <div class="col-sm-8 settingsText2">
+                    <input type="number" min="0" step="1" ng-model="timeoutTimeInput" required class="timeoutTimeInput" /> (0 to disable)
+                </div>
+            </form>
+        </div>
+        <div class="row settingsRow">
+            <form ng-submit="submitInitialZoom()">
+                <div class="col-sm-4 settingsLeft">
+                    <button id="f4" class="btn btn-default" type="submit">Set Initial Zoom</button>
+                </div>
+                <div class="col-sm-8 settingsText2">
+                    <input type="number" min="0" step="1" ng-model="initialZoom" required class="initialZoomInput" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

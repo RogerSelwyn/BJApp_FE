@@ -1,0 +1,42 @@
+﻿<div class="pageContent">
+    <div id="container" class="container pageContainer">
+        <div class="row">
+            <div class="col-sm-12 searchBar">
+                <div class="pull-left searchBarSearch">
+                    <input ng-model="searchPostcode" placeholder="Search 'TR'" class="searchPostcodeInput" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-if="locations.length>0">
+            <div class="col-sm-4 selectionList selectionListLocation touch-scroll topOfSection">
+                <div class="oneLocationRecord" ng-repeat="location in locations | filter:CustomSearchLocation" ng-click="selectLocation(location)" ng-class="{locationSelectedRecord: location.id == selectedLocation}">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="selectionItemThumb" bj-src="{{baseURL}}{{location.ThumbnailLocation}}" alt="{{location.LocationName}}" bjapp-imgcache>
+                        </div>
+                        <div class="media-body">
+                            <div class="media-heading selectionItemText">{{location.LocationName}}</div>
+                            <div><em>{{location.Postcode}}</em></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 selectionLocationDetail touch-scroll topOfSection">
+                <a href="#!location/{{location.id}}" class="no-decoration">
+                    <div>
+                        <h4>
+                            <b>{{location.LocationName}}</b>
+                        </h4>
+                        <hr class="hrTitleDivider" />
+                        <div>
+                            <div ng-if="location.Description">
+                                <b>General Information:</b><div ng-bind-html="location.Description"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

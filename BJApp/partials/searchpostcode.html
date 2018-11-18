@@ -1,0 +1,49 @@
+﻿<div id="container" class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pageHeader">Location Search</div>
+        </div>
+
+        <div class="col-sm-12">
+            <form ng-submit="submit()" ng-controller="SearchLocationCtrl">
+                <div class="searchPostcodeInput">
+                    <input type="text" ng-model="cPostcode" required placeholder="PoC: Use TR11" />
+                </div>
+                <div class="searchPostcodeButton">
+                    <button id="f1" class="btn btn-default" type="submit">Search Postcode</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" ng-if="locations.length>0" >
+        <div class="col-sm-12 topOfSection">
+            <div class="col-sm-4 selectionList selectionListLocation touch-scroll">
+                <div class="oneLocationRecord" ng-repeat="location in locations" ng-click="selectLocation(location)" ng-class="{locationSelectedRecord: location.id == selectedLocation}">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="" bj-src="{{baseURL}}{{location.ThumbnailLocation}}" alt="{{location.LocationName}}" bjapp-imgcache>
+                        </div>
+                        <div class="media-body">
+                            <div class="media-heading selectionItemText">{{location.LocationName}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 selectionDetail">
+                <a href="#!location/{{location.id}}" class="no-decoration">
+                    <div>
+                        <h4>
+                            <b>{{location.LocationName}}</b>
+                        </h4>
+                        <div>
+                            <div ng-if="location.Description">
+                                <b>General Information:</b><div ng-bind-html="location.Description"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

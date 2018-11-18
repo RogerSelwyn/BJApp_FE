@@ -1,0 +1,28 @@
+﻿<div class="pageContent">
+    <div id="container" class="container pageContainer">
+        <div class="row">
+            <div class="col-sm-12 mapButtons">
+                <div class="btn-group" role="group" ng-show="IsOnline.Online">
+                    <button type="button" class="btn btn-default" id="filterNone" ng-click="mapFilter('None')">None</button>
+                    <button type="button" class="btn btn-default" id="filterNotable" ng-click="mapFilter('Notable')">Notable</button>
+                    <button type="button" class="btn btn-default" id="filterAll" ng-click="mapFilter('All')">All</button>
+                    <button type="button" class="btn btn-default" id="filterRefresh" ng-click="mapFilter('Refresh')" ng-if="filterType != 'None'" ng-touchstart="btnTouchStart('filterRefresh')" ng-touchend="btnTouchEnd('filterRefresh')">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-12 ngMap">
+                <ng-map default-style="false" center="[{{mapLat}}, {{mapLng}}]" zoom="{{mapZoom}}" on-idle="mapIdle()">
+                    <marker id="loc{{location.id}}" ng-repeat="location in locations" position="[{{location.Latitude}}, {{location.Longitude}}]" on-click="showLocationInfoWindow(event, location)"></marker>
+                    <marker id="All{{sighting.locID}}" ng-repeat="sighting in sightings" position="[{{sighting.lat}}, {{sighting.lng}}]" icon="images/birds.png" on-click="showeBirdInfoWindow(event, sighting, 'All')"></marker>
+                    <marker id="Notable{{sighting.locID}}" ng-repeat="sighting in sightingsNotable" position="[{{sighting.lat}}, {{sighting.lng}}]" icon="images/birds-notable.png" on-click="showeBirdInfoWindow(event, sighting, 'Notable')"></marker>
+                    <info-window id="map-iw">
+                        <div ng-non-bindable="">
+                            <div ng-bind-html="infowindowcontent"></div>
+                        </div>
+                    </info-window>
+                </ng-map>
+            </div>
+        </div>
+    </div>
+</div>
